@@ -64,19 +64,12 @@ def obtener_respuesta():
                 else:
                     print("Lo siento, no tengo una respuesta para esa pregunta.")
 
-            # Salir del bucle y terminar el script si la pregunta es "descansa" o "despidete"
-            if pregunta_normalizada == "descansa" or pregunta_normalizada == "despidete":
-                print("Terminando el script.")
-                break
-            else:
-                print("Lo siento, no tengo una respuesta para esa pregunta.")
-
-    except sr.WaitTimeoutError:
-        print("No se detectó ninguna frase. Por favor, intenta de nuevo.")
-    except sr.UnknownValueError:
-        print("No se pudo entender la pregunta. Por favor, intenta de nuevo.")
-    except sr.RequestError as e:
-        print(f"Error al realizar la solicitud de reconocimiento de voz: {e}")
+            except sr.WaitTimeoutError:
+                print("No se detectó ninguna frase. Por favor, intenta de nuevo.")
+            except sr.UnknownValueError:
+                print("No se pudo entender la pregunta. Por favor, intenta de nuevo.")
+            except sr.RequestError as e:
+                print(f"Error al realizar la solicitud de reconocimiento de voz: {e}")
 
 # Ejecutar la función para obtener la pregunta y reproducir la respuesta
 obtener_respuesta()
