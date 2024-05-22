@@ -8,7 +8,7 @@ Basic python script with some voices response of T2 original movie.
 pip install SpeechRecognition
 python -m pip install --upgrade pip setuptools
 pip install playsound==1.2.2
-
+pip install PyAudio
 ```
 
 ## Execution

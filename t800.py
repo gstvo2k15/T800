@@ -6,7 +6,6 @@ import os
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sounds = os.path.join(current_dir, 'T800')
 
-
 # Diccionario de preguntas y respuestas asociadas a archivos de audio
 respuestas = {
     "T800 que modelo eres": "Cyberdine.mp3",
@@ -35,7 +34,7 @@ def obtener_respuesta():
         # Verificar si la pregunta esta en el diccionario de respuestas
         if pregunta in respuestas:
             archivo_respuesta = respuestas[pregunta]
-            ruta_completa = os.path.join(ruta_archivos, archivo_respuesta)
+            ruta_completa = os.path.join(sounds, archivo_respuesta)
             print(f"Respuesta: {ruta_completa}")
             # Reproducir el archivo de audio asociado a la pregunta
             playsound(ruta_completa)
@@ -49,4 +48,3 @@ def obtener_respuesta():
 
 # Ejecutar la funcion para obtener la pregunta y reproducir la respuesta
 obtener_respuesta()
-
