@@ -2,6 +2,7 @@ import speech_recognition as sr
 from playsound import playsound
 import os
 import unicodedata
+import random
 
 # Ruta donde se encuentran los archivos de audio (relativa al directorio del script)
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -12,12 +13,13 @@ print(f"Ruta de archivos: {ruta_archivos}")
 
 # Diccionario de preguntas y respuestas asociadas a archivos de audio
 respuestas = {
-    "t800 que modelo eres": "Cyberdine.mp3",
-    "t800 de que estas hecho": "human_esqueleton.mp3",
-    "t800 quien te envia": "35years.mp3",
-    "t800 despidete": "sayonara.mp3",
-    "t800 descansa": "beback.mp3",
-    "t800 comemela": "calmdown.mp3"
+    "que modelo eres": ["Cyberdine.mp3"],
+    "de que estas hecho": ["human_esqueleton.mp3"],
+    "quien te envia": ["35years.mp3"],
+    "despidete": ["sayonara.mp3"],
+    "descansa": ["beback.mp3"],
+    "comemela": ["calmdown.mp3"],
+    "eres un organismo vivo": ["yes1.mp3", "correct.mp3", "yes2.mp3", "affirmative.mp3"]
 }
 
 # Inicializar el reconocedor de voz
@@ -34,7 +36,7 @@ def obtener_respuesta():
         print("Ajustando sensibilidad al ruido de fondo. Por favor, espera un momento...")
         
         while True:
-            print("Di tu pregunta ('T800 que modelo eres', 'T800 de que estas hecho', etc.):")
+            print("Di tu pregunta ('que modelo eres', 'de que estas hecho', etc.):")
             try:
                 audio = recognizer.listen(source, timeout=5, phrase_time_limit=10)
                 
@@ -47,24 +49,21 @@ def obtener_respuesta():
                 print(f"Pregunta normalizada: {pregunta_normalizada}")
 
                 # Verificar si la pregunta está en el diccionario de respuestas
-                if "t800" in pregunta_normalizada:
-                    if pregunta_normalizada in respuestas:
-                        archivo_respuesta = respuestas[pregunta_normalizada]
-                        ruta_completa = os.path.join(ruta_archivos, archivo_respuesta)
-                        print(f"Respuesta: {ruta_completa}")
-                        # Verificar si el archivo de audio existe antes de reproducirlo
-                        if os.path.exists(ruta_completa):
-                            try:
-                                playsound(ruta_completa)
-                            except UnicodeDecodeError as e:
-                                print(f"Error al reproducir el archivo de audio: {e}")
-                        else:
-                            print(f"El archivo de audio {ruta_completa} no existe.")
+                if pregunta_normalizada in respuestas:
+                    archivo_respuesta = random.choice(respuestas[pregunta_normalizada])
+                    ruta_completa = os.path.join(ruta_archivos, archivo_respuesta)
+                    print(f"Respuesta: {ruta_completa}")
+                    # Verificar si el archivo de audio existe antes de reproducirlo
+                    if os.path.exists(ruta_completa):
+                        try:
+                            playsound(ruta_completa)
+                        except UnicodeDecodeError as e:
+                            print(f"Error al reproducir el archivo de audio: {e}")
                     else:
-                        print("Lo siento, no tengo una respuesta para esa pregunta.")
+                        print(f"El archivo de audio {ruta_completa} no existe.")
                 else:
-                    print("Por favor, asegúrate de incluir 'T800' en tu pregunta.")
-            
+                    print("Lo siento, no tengo una respuesta para esa pregunta.")
+
             except sr.WaitTimeoutError:
                 print("No se detectó ninguna frase. Por favor, intenta de nuevo.")
             except sr.UnknownValueError:
