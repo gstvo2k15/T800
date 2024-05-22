@@ -3,6 +3,7 @@ from playsound import playsound
 import os
 
 # Ruta donde se encuentran los archivos de audio
+current_dir = os.path.dirname(os.path.abspath(__file__))
 sounds = os.path.join(current_dir, 'T800')
 
 
