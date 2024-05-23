@@ -17,12 +17,12 @@ respuestas = {
     "de que estas hecho": ["human_esqueleton.mp3"],
     "quien te envia": ["35years.mp3"],
     "despidete": ["sayonara.mp3"],
-    "descansa": ["beback.mp3"],
-    "comemela": ["calmdown.mp3"],
+    "descansa": ["beback.mp3", "negativenopriority.mp3", "nopriority.mp3"],
+    "comemela": ["calmdown.mp3", "negative.mp3"],
     "eres un organismo vivo": ["yes1.mp3", "correct.mp3", "yes2.mp3", "affirmative.mp3"],
-    "cual es tu mision": ["mission.mp3", "objective.mp3"],
-    "cuanto tiempo llevas activo": ["active_since.mp3"],
-    "tienes emociones": ["no_emotions.mp3", "emotionless.mp3"]
+    "cual es tu mision": ["mission.mp3", "alonemission.mp3"],
+    "cuanto tiempo llevas activo": ["120years.mp3", "emotionless.mp3"],
+    "tienes emociones": ["nopriority.mp3", "no1.mp3"]
 }
 # Inicializar el reconocedor de voz
 recognizer = sr.Recognizer()
